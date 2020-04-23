@@ -1,0 +1,221 @@
+#debug{
+    color:red;
+}
+
+body
+{
+    margin: 10px 0 ;
+    text-align: center ;
+    font: 0.8em "Arial", arial, sans-serif ;
+    background-color:black;
+
+}
+
+a{
+    text-align: center ;
+}
+
+#preload{
+    display: none;
+}
+
+.block {
+    width: 120px;
+    height: 120px;
+    background-color: rgba(255,255,255,0.5);
+    margin: 20px;
+    padding-top: 5px;
+    font-size: small;
+}
+
+button:hover {
+    background: red;
+}
+
+button{
+
+    text-align: center ;
+    width:350px;
+    height:70px;
+    border: solid black 5px;
+    margin: auto;
+    margin-top: 20px;
+    background: darkgrey;
+    background-image: -webkit-linear-gradient(top, azure,grey);
+    font-family: Arial,sans-serif;
+    color: #000000;
+    font-size: 35px;
+}
+
+
+#container {
+    display:                 flex;
+    display:                 -webkit-flex; /* Safari 8 */
+    flex-wrap:               wrap;
+    -webkit-flex-wrap:       wrap;         /* Safari 8 */
+    justify-content:         center;
+    -webkit-justify-content: center;       /* Safari 8 */
+    white-space: normal;
+}
+
+div
+{
+    width:80%;
+    margin:auto;
+    text-align: center ;
+    border: black ;
+}
+
+.playerNick{
+    margin-bottom :40px;
+}
+
+h1
+{
+    font-style: italic;
+    color: red;
+    font-weight: bold;
+    text-align: center ;
+    display: block ;
+    font-size: 70px;
+    font-family: "Axure Handwriting", sans-serif;
+}
+h2
+{
+    font-size: 25px;
+    color: black;
+    text-align: center ;
+    background-color:white;
+}
+
+img{
+    height: 60px;
+    margin: 15px;
+}
+
+input{
+    width:400px;
+    height:50px;
+    text-align: center ;
+    font-size: 30px;
+    background-color:lightgrey;
+    color: green;
+
+}
+
+p
+{
+    font-size: 30px;
+    text-align: left ;
+}
+
+#tuto{
+    background-color: rgba(255,255,255,0.5);
+    padding:15px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    background-color:lightgrey;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    font-size:27px;
+}
+th{
+    background-color:grey;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+
+
+[notOnMobile],[notOnPad]{
+     display:block;
+}
+
+td[notOnMobile],th[notOnMobile]{
+    display: table-cell;
+}
+
+[notOnPC]{
+    display:none;
+}
+
+/* Tablets*/
+@media only screen and (max-width : 1199px) {
+
+
+    [onPad], [onMobile]{
+        display:block;
+    }
+
+    [notOnPad]{
+        display:none;
+    }
+
+    p, th, td {
+        font-size:20px;
+    }
+
+    button{
+        width:250px;
+        height:50px;
+        font-size: 25px;
+        padding:0;
+    }
+
+    .playerNick{
+        margin-bottom :20px;
+    }
+
+    h1{
+        font-size:40px;
+    }
+
+    input{
+        width:300px;
+        height:30px;
+        font-size: 15px;
+    }
+}
+
+/* Mobile < 800px because game is 800 width*/
+@media only screen and (max-width: 799px) {
+
+    td[notOnMobile],th[notOnMobile],[notOnMobile]{
+        display: none;
+    }
+
+    [onMobile]{
+        display:block;
+    }
+
+
+    p, th, td {
+        font-size:15px;
+    }
+
+    #tuto{
+        background-color: rgba(255,255,255,0.5);
+        padding:10px;
+    }
+
+    button{
+        width:200px;
+        height:40px;
+        font-size: 20px;
+        margin-top:5px;
+        padding:0;
+    }
+
+    h1{
+        font-size:25px;
+    }
+}
+

@@ -1,0 +1,37 @@
+
+<!--<div id = "debug"></div>!-->
+<div id="gameScreen" oncontextmenu="return false;"></div>
+
+<script>
+    (function () {
+
+        const theGame = new Game();
+        theGame.init();
+        let requestAnimId = null;
+
+        startLoop();
+
+        //gestion de la souris
+        const canvasUi = document.getElementById("uiLayer");
+        canvasUi.onmousemove = function (event) {
+            theGame.mouse.onMouseMove(-(canvasUi.offsetLeft-event.pageX-1), -(canvasUi.offsetTop-event.pageY-1));
+        };
+
+        canvasUi.onclick = function(event){
+            theGame.mouse.onMouseClick();
+        };
+
+        function startLoop(){
+            requestAnimId = window.requestAnimationFrame(refreshScreen);
+        }
+
+        function refreshScreen(){
+
+            theGame.refreshUiElement();
+            theGame.refrehLayers();
+
+            requestAnimId = window.requestAnimationFrame(refreshScreen);
+        }
+
+    })();
+</script>

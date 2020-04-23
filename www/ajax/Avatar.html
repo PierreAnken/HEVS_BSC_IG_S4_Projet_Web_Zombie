@@ -1,0 +1,73 @@
+<h1>Choose your avatar </br>(Drag & Drop)</h1>
+
+<div>
+    <div id="avatars"></div>
+    <div id="container"></div>
+</div>
+<div>
+    <button linkCheckAvatars="GameScreen">Next</button>
+</div>
+
+<script>
+
+    for (let i = 1; i <= 8; i++) {
+        $("#avatars").append('<img avatar id="' + i + '" src="img/game/avatars/avatar' + i + '.png" ondragend="dragEnd(event)" draggable="true" ondragstart="drag(event)">');
+    }
+
+    const avatarsImg = [];
+    for (let i = 0; i < sessionStorage.getItem("playerCount"); i++) {
+        $("#container").append('<div empty="true" id = "monAvatar"  class="block" nbr ="'+i+'"  ondrop="drop(event)" ondragover="allowDrop(event)">'+JSON.parse(sessionStorage.getItem("nickNames"))[i]+'<br></div>')
+    }
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+        $("[empty=true]").css("background-color","white");
+    }
+
+    function dragEnd(ev){
+        $("[empty]").css("background-color","rgba(255,255,255,0.5)");
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        const id = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(id));
+        ev.target.removeAttribute("ondragover");
+        ev.target.setAttribute("empty","false");
+
+        document.getElementById(id).setAttribute("ondragstart","event.preventDefault()");
+
+        avatarsImg[ev.target.getAttribute("nbr")] = "avatar" + id + ".png";
+        sessionStorage.setItem("avatarsImg", JSON.stringify(avatarsImg));
+    }
+
+    $("[linkCheckAvatars='GameScreen']").click(function () {
+        event.preventDefault();
+        $("div[id='monAvatar']").css("background-color","#d3d3d3");
+        let valide = true;
+
+        $("div[ondragover]").each(function () {
+            valide=false;
+        });
+
+
+        if(valide){
+              loadPage("GameScreen");
+            } else {
+                 $("div[ondragover]").css("background-color","#FF8080");
+            }
+
+    });
+
+    function loadPage(linkCheckAvatars){
+        if (linkCheckAvatars === undefined) {
+            linkCheckAvatars = "PlayerName";
+        }
+        $("body").load("ajax/" + linkCheckAvatars + ".html");
+    }
+
+
+</script>

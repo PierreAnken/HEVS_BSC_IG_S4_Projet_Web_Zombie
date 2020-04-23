@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>7 Days to Survive</title>
+    <link rel="stylesheet" href="css/site.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+
+<body background="img/Arriere_Plan_Home.png">
+    <h2> Chargement en cours... Si ce message persiste votre navigateur ne prend pas en charge le javascript</h2>
+
+    <div id="preload">
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    $( document ).ready(function() {
+        //first load from home
+        $("#preload").html('<img src="img/game/views/airportTrip.jpg" height="1" width="1"/>'
+            +'<img src="img/game/views/workshop.png" height="1" width="1"/>'
+            +'<img src="img/game/views/victory.jpg" height="1" width="1"/>'
+            +'<img src="img/game/views/townTrip.jpg" height="1" width="1"/>'
+            +'<img src="img/game/views/recyclingPlantTrip.jpg" height="1" width="1"/>'
+            +'<img src="img/game/views/readyUp.png" height="1" width="1"/>'
+            +'<img src="img/game/views/pool4.png" height="1" width="1"/>'
+            +'<img src="img/game/views/pool2.png" height="1" width="1"/>'
+            +'<img src="img/game/views/outsideA.jpg" height="1" width="1"/>'
+            +'<img src="img/game/views/outsideB.jpg" height="1" width="1"/>'
+            +'<img src="img/game/views/gameResume.jpg" height="1" width="1"/>'
+            +'<img src="img/game/views/gameOver.jpg" height="1" width="1"/>'
+            +'<img src="img/game/views/forestTrip.jpg" height="1" width="1"/>'
+            +'<img src="img/game/views/dayResume.png" height="1" width="1"/>'
+            +'<img src="img/game/views/bunkerInside.jpg" height="1" width="1"/>'
+            +'<img src="img/game/overlays/night10.png" height="1" width="1"/>'
+            +'<img src="img/game/overlays/night25.png" height="1" width="1"/>'
+            +'<img src="img/game/overlays/night40.png" height="1" width="1"/>'
+            +'<img src="img/game/overlays/night50.png" height="1" width="1"/>'
+            +'<img src="img/game/overlays/night65.png" height="1" width="1"/>',
+        ).promise().done(function(){
+            loadPage();
+        });
+
+        //Navigation with Ajax
+        $(document).on("click", "[link]", function (e) {
+            const link = $(this).attr("link");
+
+            if (link == "GameMode") {
+                Geo.getUserPos();
+            }
+            loadPage(link);
+        });
+
+        $(document).on("click", "[linkCheck]", function () {
+
+            var validationOk = true;
+            $("input").each(function () {
+                if ($(this).val() === "") {
+                    validationOk = false;
+                    $(this).css("background-color", "#FF8080");
+                }
+                else {
+                    $(this).css("background-color", "#CCFFDD");
+                }
+            });
+            if (validationOk) {
+                var nickNames = [];
+                $("input").each(function () {
+                    nickNames.push($(this).val());
+                });
+
+                if (typeof(Storage) !== "undefined") {
+                    sessionStorage.setItem("nickNames", JSON.stringify(nickNames));
+                    loadPage($(this).attr("linkCheck"));
+                } else {
+                    alert("Votre navigateur ne supporte pas les storage")
+                }
+            }
+        });
+
+        //nombre de joueurs
+        $(document).on("click", "[nbrPLayer]", function (e) {
+            const nbrPlayer = $(this).attr("nbrPLayer");
+            sessionStorage.setItem("playerCount",nbrPlayer);
+        });
+
+        function loadPage(link){
+            if (link === undefined) {
+                link = "Home";
+            }
+
+            if(!link.includes("."))
+                link += ".html";
+
+            $("body").load("ajax/" + link);
+        }
+
+        //animation bouttons
+        $(document).on("mouseover", "button", function(){
+            $(this).animate({
+                width: '+=20px'
+            }, 500)
+                .animate({
+                    width: '-=20px'
+                }, 500)
+        });
+
+        //blocage du clavier
+        $(document).on("keydown", function (e) {
+            if (e.which == 13) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
+
+    });
+
+</script>
+
+<!-- Game classes -->
+
+<script src="js/Tb.js"></script>
+<script src="js/Trip.js"></script>
+<script src="js/Tech.js"></script>
+<script src="js/Player.js"></script>
+<script src="js/Mouse.js"></script>
+<script src="js/Area.js"></script>
+<script src="js/Layer.js"></script>
+<script src="js/UiElement.js"></script>
+<script src="js/Material.js"></script>
+<script src="js/Structure.js"></script>
+<script src="js/Drawer.js"></script>
+<script src="js/Time.js"></script>
+<script src="js/Game.js"></script>
+<script src="js/Geo.js"></script>
+<script src="js/Sound.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyC1LKkczOxqzHcoMTzEVzxJHBVmCDpoD7s"></script>
+
+

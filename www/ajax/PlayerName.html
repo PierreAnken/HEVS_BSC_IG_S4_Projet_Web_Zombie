@@ -1,0 +1,24 @@
+
+<h1>Players </h1>
+
+<div>
+    <form id="formNames" players>
+    </form>
+    <br/>
+
+
+    <button notOnMobile notOnPad linkCheck="Avatar">Next</button>
+    <!-- We skip avatars on mobile and Pad because they dont support drag and drop-->
+    <button notOnPC onMobile linkCheck="GameScreen">Next</button>
+    <button link="GameMode">Back</button>
+
+</div>
+
+<script>
+
+    for (let i = 0; i < sessionStorage.getItem("playerCount"); i++) {
+        $("#formNames").append( '<div class ="playerNick"><input type="text" playerId="'+(i+1)+'" placeholder="Player '+(i+1)+' nickname" maxlength="8" minlength="1" required/></div>');
+    }
+
+</script>
+
