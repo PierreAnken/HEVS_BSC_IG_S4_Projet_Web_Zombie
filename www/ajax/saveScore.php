@@ -7,7 +7,7 @@
 
     if($sNickname != null && $sScore != null){
 
-        $conn = new mysqli("localhost", "id6059922_panken", "zombie2018", "id6059922_zombie");
+        $conn = new mysqli("localhost", "user", "password", "db");
 
         if (!$conn->connect_error) {
 
