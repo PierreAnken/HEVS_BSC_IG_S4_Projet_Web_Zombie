@@ -20,5 +20,5 @@ A full playable game with a short storyline and craftables items.
 - Dynamic graphics elements
 - Sounds effects
 
-The game is accessible at [this link](zombiegame.freecluster.eu). 
+The game is accessible at [this link]([zombiegame.freecluster.eu](http://izombie.42web.io/)). 
 You can use the player name TestZ to enable debug mode (fast time/ressources).
